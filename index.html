@@ -1,0 +1,49 @@
+<!--目的: メイン画面を構成し、Google Mapsとラーメン屋情報を表示-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ラーメンマップ</title>
+  <style>
+    /* 地図のコンテナスタイル */
+    #map {
+      height: 70vh; /* 画面高さの70%を使用 */
+      width: 100%;
+    }
+    /* 訪問済みラーメン屋リストの背景色 */
+    .visited {
+      background-color: yellow;
+    }
+    /* ページタイトルのフォント設定 */
+    #heading {
+      font-family: sans-serif;
+    }
+    #showVisited{
+      margin-top: 10px;
+      background-color: azure;
+    }
+    #goToCurrentLocation {
+      background-color: azure;
+    }
+  </style>
+</head>
+<body>
+  <!-- ページの見出し -->
+  <h1 id="heading">近くのラーメン屋を探す(1km以内)</h1>
+
+  <!-- 地図を表示するコンテナ -->
+  <div id="map"></div>
+
+  <!-- 訪問済みのラーメン屋リストを開くボタン -->
+  <button id="showVisited">訪れたラーメン屋を表示</button>
+
+  <!-- 現在地に地図を移動するボタン -->
+  <button id="goToCurrentLocation">現在地に移動</button>※現在地がずれる可能性があります。
+  
+  <!-- Google Maps APIを読み込み -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVBv3w6_HADw4GNJTDVzdZy0CnQzteyks&libraries=places"></script>
+  <!-- 地図操作のスクリプト -->
+  <script src="app.js"></script>
+</body>
+</html>
