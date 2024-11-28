@@ -92,5 +92,18 @@ document.getElementById('showVisited').addEventListener('click', () => {
   window.open('visited.html', '_blank', 'width=400,height=600');
 });
 
+// 現在地に地図を移動
+document.getElementById('goToCurrentLocation').addEventListener('click', () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      map.setCenter(pos);
+    });
+  }
+});
+
 // 地図の初期化
 window.onload = initMap;

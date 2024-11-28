@@ -7,43 +7,81 @@
   <title>ラーメンマップ</title>
   <style>
     /* 地図のコンテナスタイル */
-    #map {
-      height: 70vh; /* 画面高さの70%を使用 */
-      width: 100%;
-    }
-    /* 訪問済みラーメン屋リストの背景色 */
-    .visited {
-      background-color: yellow;
-    }
-    /* ページタイトルのフォント設定 */
-    #heading {
-      font-family: sans-serif;
-    }
-    #showVisited{
-      margin-top: 10px;
-      background-color: azure;
-    }
-    #goToCurrentLocation {
-      background-color: azure;
-    }
+  #map {
+    height: 70vh; /* 画面高さの70%を使用 */
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  /* 訪問済みラーメン屋リストの背景色 */
+  .visited {
+    background-color: yellow;
+  }
+
+  /* ページタイトルのフォント設定 */
+  #heading {
+    font-family: monospace;
+    text-align: center;
+  }
+  /*段落の編集*/
+  #Paragraph {
+    font-family: monospace;
+    font-size: large;
+    text-align: center;
+  }
+
+  /* ボタンを地図の下に配置 */
+  #buttonContainer {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* ボタンのスタイル */
+  button {
+    background-color: azure;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 2px solid #000000; /* 枠線を追加 */
+    border-radius: 100vh; /*ボタンの角を丸くする*/
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* 強調表示 */
+  }
+
+  /* ホバー時のボタンスタイル */
+  button:hover {
+    background-color: lightblue;
+    border-color: #000000; /* ホバー時の枠線の色 */
+  }
+  /* 注意文のスタイル */
+  #locationNote {
+    font-family: monospace; /* フォントをmonospaceに設定 */
+    text-align: center; /* 中央揃え */
+    margin-top: 5px; /* 少し余白を追加 */
+    font-size: 14px; /* 適切なサイズに調整 */
+  }
   </style>
 </head>
 <body>
   <!-- ページの見出し -->
-  <h1 id="heading">近くのラーメン屋を探す(1km以内)</h1>
-
+  <h1 id="heading">ラーメンマップへようこそ！</h1>
+  <p id="Paragraph">近くのラーメン屋を探す(1km以内)</p>
   <!-- 地図を表示するコンテナ -->
   <div id="map"></div>
 
-  <!-- 訪問済みのラーメン屋リストを開くボタン -->
-  <button id="showVisited">訪れたラーメン屋を表示</button>
+  <!-- ボタンコンテナ -->
+  <div id="buttonContainer">
+    <!-- 訪問済みのラーメン屋リストを開くボタン -->
+    <button id="showVisited">訪れたラーメン屋を表示</button>
 
-  <!-- 現在地に地図を移動するボタン -->
-  <button id="goToCurrentLocation">現在地に移動</button>※現在地がずれる可能性があります。
-  
+    <!-- 現在地に地図を移動するボタン -->
+    <button id="goToCurrentLocation">現在地に移動</button>
+    <span id="locationNote">※現在地がずれる可能性があります。</span>
+  </div>
   <!-- Google Maps APIを読み込み -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVBv3w6_HADw4GNJTDVzdZy0CnQzteyks&libraries=places"></script>
   <!-- 地図操作のスクリプト -->
   <script src="app.js"></script>
 </body>
+
 </html>
