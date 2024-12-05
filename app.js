@@ -17,13 +17,13 @@ function initMap() {
       // Google Mapsオブジェクトを作成
       map = new google.maps.Map(document.getElementById("map"), {
         center: pos,
-        zoom: 15, // 地図のズームレベル
+        zoom: 14, // 地図のズームレベルを少し引き気味に
       });
 
       // Places APIを使った検索リクエスト
       const request = {
         location: pos,
-        radius: '1000', // 半径1km
+        radius: '3000', // 半径3km
         type: ['restaurant'], // レストラン
         keyword: 'ラーメン', // 検索キーワード
       };
@@ -39,16 +39,25 @@ function initMap() {
 }
 
 // 検索結果を処理するコールバック関数
-function callback(results, status) {
+function callback(results, status, pagination) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    results.forEach((result) => {
-      createMarker(result); // 各結果にマーカーを作成
-    });
+    results.forEach(createMarker);
+
+    // 次ページの結果を取得
+    if (pagination && pagination.hasNextPage) {
+      setTimeout(() => {
+        pagination.nextPage();
+      }, 100); // 100msの遅延でリクエスト
+    }
+  } else {
+    console.error('検索結果の取得に失敗:', status);
   }
 }
 
+
 // 地図にマーカーを作成する関数
 function createMarker(place) {
+  // マーカーの作成
   const marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
@@ -56,24 +65,55 @@ function createMarker(place) {
     icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', // 赤いマーカー
   });
 
-  // マーカークリック時の動作
-  google.maps.event.addListener(marker, 'click', () => {
-    infoWindow.setContent(`
-      <div>
-        <strong>${place.name}</strong>
-        <button onclick="markAsVisited('${place.place_id}', '${place.name}')">訪問済み</button>
-      </div>
-    `);
-    infoWindow.open(map, marker);
+  // Places Details リクエストを送信して住所を取得
+  const request = {
+    placeId: place.place_id,
+    fields: ['name', 'formatted_address'], // 必要なフィールドを指定
+  };
+
+  service.getDetails(request, (details, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && details) {
+      // マーカークリック時の動作
+      google.maps.event.addListener(marker, 'click', () => {
+        infoWindow.setContent(`
+          <div>
+            <strong>${details.name}</strong><br>
+            <span>${details.formatted_address}</span><br>
+            <button onclick="markAsVisited('${place.place_id}', '${details.name}')">訪問済み</button>
+          </div>
+        `);
+        infoWindow.open(map, marker);
+      });
+    } else {
+      console.error('詳細取得に失敗:', status);
+    }
   });
 }
+
 
 // 訪問済みのラーメン屋を登録する
 function markAsVisited(placeId, name) {
   if (!visitedPlaces.includes(placeId)) {
     visitedPlaces.push(placeId);
     saveVisitedPlace(placeId, name);
+    alert(`「${name}」を訪問済みに追加しました！`); // アラートを追加
+  } else {
+    alert(`「${name}」は既に訪問済みに登録されています。`);
   }
+}
+
+// サーバーに訪問済みのラーメン屋を保存する
+function saveVisitedPlace(placeId, name) {
+  fetch('http://localhost:8000/save_place.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ place_id: placeId, name: name }), // 保存データ
+  })
+    .then(response => response.json())
+    .then(data => console.log(data)) // 成功メッセージ
+    .catch(error => console.error('Error:', error)); // エラーハンドリング
 }
 
 // 位置情報取得エラー時の処理

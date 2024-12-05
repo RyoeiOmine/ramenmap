@@ -1,16 +1,73 @@
-<!--訪問済みのラーメン屋のリストを表示し、個別に削除可能-->
+<!-- 訪問済みのラーメン屋を表示 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>訪れたラーメン屋</title>
+  <style>
+    button {
+      background-color: azure;
+      margin: 5px;
+      padding: 5px 10px;
+      border: 2px solid #000000;
+      border-radius: 100vh;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: lightblue;
+      border-color: #000000;
+    }
+  </style>
 </head>
 <body>
-  <!-- ページタイトル -->
   <h1>訪れたラーメン屋</h1>
-
-  <!-- 訪問済みラーメン屋をリスト表示 -->
   <ul id="visitedList"></ul>
+
+  <script>
+    fetch('http://localhost:8000/get_visited_places.php')
+      .then(response => response.json())
+      .then(places => {
+        const list = document.getElementById('visitedList');
+        places.forEach(place => {
+          const listItem = document.createElement('li');
+          listItem.textContent = place.name;
+
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = '削除';
+          deleteButton.addEventListener('click', () => {
+            if (confirm(`「${place.name}」を削除しますか？`)) {
+              deleteVisitedPlace(place.place_id, listItem);
+            }
+          });
+
+          listItem.appendChild(deleteButton);
+          list.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error('エラー:', error));
+
+    function deleteVisitedPlace(placeId, listItem) {
+      fetch('http://localhost:8000/delete_place.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ place_id: placeId }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            listItem.remove();
+          } else {
+            console.error('削除エラー:', data.message);
+          }
+        })
+        .catch(error => console.error('エラー:', error));
+    }
+  </script>
 </body>
 </html>
