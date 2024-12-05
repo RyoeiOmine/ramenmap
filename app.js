@@ -96,9 +96,6 @@ function markAsVisited(placeId, name) {
   if (!visitedPlaces.includes(placeId)) {
     visitedPlaces.push(placeId);
     saveVisitedPlace(placeId, name);
-    alert(`「${name}」を訪問済みに追加しました！`); // アラートを追加
-  } else {
-    alert(`「${name}」は既に訪問済みに登録されています。`);
   }
 }
 
