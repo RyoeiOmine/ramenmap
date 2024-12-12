@@ -96,6 +96,9 @@ function markAsVisited(placeId, name) {
   if (!visitedPlaces.includes(placeId)) {
     visitedPlaces.push(placeId);
     saveVisitedPlace(placeId, name);
+    alert(`「${name}」を訪問済みに追加しました！`); // アラートで追加したことを利用者に報告
+  } else {
+    alert(`「${name}」は既に訪問済みに登録されています。`);
   }
 }
 
@@ -140,6 +143,11 @@ document.getElementById('goToCurrentLocation').addEventListener('click', () => {
       map.setCenter(pos);
     });
   }
+});
+
+// おすすめのラーメン屋の表示
+document.getElementById('recommendation').addEventListener('click', () => {
+  window.open('recommendation-ramen.html', '_blank');
 });
 
 // 地図の初期化

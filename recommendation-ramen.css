@@ -1,0 +1,82 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    height: 56px;
+    width: 100%;
+    position: fixed;/* ヘッダー部を上部に固定する */
+    top: 0;/* 垂直位置0に表示位置を指定 */
+}
+.container{
+    max-width: 980px;/* 最大の幅を980pxに指定（980px以下は伸び縮み） */
+    padding: 0 30px;
+    margin-left: auto;/* クラス「container」の要素を中央に表示する */
+    margin-right: auto;/* クラス「container」の要素を中央に表示する */
+}
+.main-visual {
+    padding-top: 140px;
+    padding-bottom: 100px;
+    background-image: url("images/aitsunoramen-back.png");
+    background-size: cover; /* 拝啓画像で要素を覆う（拡大縮小） */
+    background-repeat: no-repeat; /* 繰り返さないように設定 */
+    background-position: center; /* 中央に配置 */
+    opacity: 0.9; /* 少し透過する */
+    color: #000000;
+    text-align: center;
+}
+
+.top-title{
+    font-size: 64px;
+    margin-bottom: 10px;
+}
+.top-subtitle{
+    font-size: 24px;
+    margin-bottom: 60px;
+}
+.top-text{
+    opacity: 0.9;/* 指定した要素を10%透明にする */
+}
+.main{
+    padding: 80px 0;
+    color: #5a5c5f;
+    text-align: center;
+}
+.main h2{
+    margin-bottom: 5px;
+}
+.main p{
+    margin-bottom: 50px;
+}
+.First-main-image{
+    width: 450px;
+    height: 480px;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 4px #b7b7b7;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.Second-main-image{
+    width: 550px;
+    height: 400px;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 4px #b7b7b7;
+    border-radius: 5px;
+}
+.Third-main-image{
+    width: 400px;
+    height: 480px;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 4px #b7b7b7;
+    border-radius: 5px;
+}
+.main h3{
+    margin-bottom: 10px;
+}
+.footer{
+    height: 50px;
+    background-color: #2f3a44;
+    color: #e8e8e8;
+    padding-top: 20px;
+}
