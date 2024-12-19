@@ -129,7 +129,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 // 訪問済みラーメン屋のリストを表示
 document.getElementById('showVisited').addEventListener('click', () => {
-  window.open('visited.html', '_blank', 'width=400,height=600');
+  window.open('visited.html', '_blank');
 });
 
 // 現在地に地図を移動

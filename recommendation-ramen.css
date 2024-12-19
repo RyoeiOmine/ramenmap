@@ -6,8 +6,34 @@
 .header{
     height: 56px;
     width: 100%;
+    box-shadow: 0 0 10px #dddddd;
+    background-color: white;
     position: fixed;/* ヘッダー部を上部に固定する */
     top: 0;/* 垂直位置0に表示位置を指定 */
+}
+.header-left{
+    float: left;/*セレクタの要素を左寄せに表示し、続く要素を右に回り込ませる*/
+}
+.header-right{
+    float: right;/*セレクタの要素を右寄せに表示し、続く要素を左に回り込ませる*/
+}
+.clear{
+    clear: both;/*floatの状態を解除する*/
+}
+.header-logo{
+    height: 40px;
+    margin-top: 8px;
+}
+.header-right a{/*クラス「header-right」のdiv要素の「子要素」のa要素をセレクタにする*/
+    line-height: 56px;
+    color: #5a5c5f;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 16px 5px;/* 上下16px、左右5pxのpaddingを指定 */
+}
+.header-right a:hover{
+    background-color: #e2f1ff;
+    transition: background-color 0.5s;/* 背景色の変化を0.5秒でアニメーション化する */
 }
 .container{
     max-width: 980px;/* 最大の幅を980pxに指定（980px以下は伸び縮み） */
@@ -16,15 +42,24 @@
     margin-right: auto;/* クラス「container」の要素を中央に表示する */
 }
 .main-visual {
-    padding-top: 140px;
-    padding-bottom: 100px;
+    padding-top: 180px;
+    padding-bottom: 240px;
     background-image: url("images/aitsunoramen-back.png");
     background-size: cover; /* 拝啓画像で要素を覆う（拡大縮小） */
-    background-repeat: no-repeat; /* 繰り返さないように設定 */
-    background-position: center; /* 中央に配置 */
-    opacity: 0.9; /* 少し透過する */
     color: #000000;
     text-align: center;
+}
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* 強調表示 */
+}
+
+/* ホバー時のボタンスタイル */
+.btn:hover {
+    background-color: lightblue;
 }
 
 .top-title{
@@ -75,7 +110,7 @@
     margin-bottom: 10px;
 }
 .footer{
-    height: 50px;
+    height: 30px;
     background-color: #2f3a44;
     color: #e8e8e8;
     padding-top: 20px;

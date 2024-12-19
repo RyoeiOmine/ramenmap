@@ -5,62 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ラーメンマップ</title>
-  <style>
-    /* 地図のコンテナスタイル */
-  #map {
-    height: 70vh; /* 画面高さの70%を使用 */
-    width: 60%;
-    margin: 0 auto;
-  }
-
-  /* 訪問済みラーメン屋リストの背景色 */
-  .visited {
-    background-color: yellow;
-  }
-
-  /* ページタイトルのフォント設定 */
-  #heading {
-    font-family: monospace;
-    text-align: center;
-  }
-  /*段落の編集*/
-  #Paragraph {
-    font-family: monospace;
-    font-size: large;
-    text-align: center;
-  }
-
-  /* ボタンを地図の下に配置 */
-  #buttonContainer {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  /* ボタンのスタイル */
-  button {
-    background-color: azure;
-    margin: 5px;
-    padding: 10px 20px;
-    border: 2px solid #000000; /* 枠線を追加 */
-    border-radius: 100vh; /*ボタンの角を丸くする*/
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold; /* 強調表示 */
-  }
-
-  /* ホバー時のボタンスタイル */
-  button:hover {
-    background-color: lightblue;
-    border-color: #000000; /* ホバー時の枠線の色 */
-  }
-  /* 注意文のスタイル */
-  #locationNote {
-    font-family: monospace; /* フォントをmonospaceに設定 */
-    text-align: center; /* 中央揃え */
-    margin-top: 5px; /* 少し余白を追加 */
-    font-size: 14px; /* 適切なサイズに調整 */
-  }
-  </style>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <!-- ページの見出し -->
@@ -77,7 +22,6 @@
     <!-- 現在地に地図を移動するボタン -->
     <button id="goToCurrentLocation">現在地に移動</button>
     <span id="locationNote">※現在地がずれる可能性があります。</span>
-
     <!-- おすすめのラーメン屋を表示するボタン -->
     <button id="recommendation">おすすめのラーメン屋</button>
   </div>
