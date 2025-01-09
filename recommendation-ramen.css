@@ -43,8 +43,9 @@
 }
 .main-visual {
     padding-top: 180px;
-    padding-bottom: 240px;
+    padding-bottom: 160px;
     background-image: url("images/aitsunoramen-back.png");
+    margin: auto;
     background-size: cover; /* 拝啓画像で要素を覆う（拡大縮小） */
     color: #000000;
     text-align: center;

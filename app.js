@@ -23,8 +23,8 @@ function initMap() {
       // Places APIを使った検索リクエスト
       const request = {
         location: pos,
-        radius: '3000', // 半径3km
-        type: ['restaurant'], // レストラン
+        radius: '1000', // 半径1km
+        //type: ['restaurant'], // レストラン
         keyword: 'ラーメン', // 検索キーワード
       };
 
@@ -129,7 +129,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 // 訪問済みラーメン屋のリストを表示
 document.getElementById('showVisited').addEventListener('click', () => {
-  window.open('visited.html', '_blank');
+  location.href = 'visited.html'; // location.hrefをwindow.openにすると新しいウィンドウで開く
 });
 
 // 現在地に地図を移動
@@ -147,7 +147,7 @@ document.getElementById('goToCurrentLocation').addEventListener('click', () => {
 
 // おすすめのラーメン屋の表示
 document.getElementById('recommendation').addEventListener('click', () => {
-  window.open('recommendation-ramen.html', '_blank');
+  location.href = 'recommendation-ramen.html'; // location.hrefをwindow.openにすると新しいウィンドウで開く
 });
 
 // 地図の初期化
