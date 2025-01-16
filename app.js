@@ -79,7 +79,7 @@ function createMarker(place) {
           <div>
             <strong>${details.name}</strong><br>
             <span>${details.formatted_address}</span><br>
-            <button onclick="markAsVisited('${place.place_id}', '${details.name}')">訪問済み</button>
+            <button onclick="markAsVisited('${place.place_id}', '${details.name}')">訪問済みにする</button>
           </div>
         `);
         infoWindow.open(map, marker);
